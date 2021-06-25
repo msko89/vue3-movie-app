@@ -48,5 +48,13 @@ module.exports = {
         },
       },
     ],
+    'vue/singleline-html-element-content-newline': [
+      'error',
+      {
+        ignoreWhenNoAttributes: true,
+        ignoreWhenEmpty: false,
+        ignores: ['div', 'pre', 'textarea', ...INLINE_ELEMENTS],
+      },
+    ],
   },
 };
