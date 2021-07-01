@@ -5,6 +5,7 @@
       class="form-control"
       type="text"
       placeholder="Search for Movies, Series & more"
+      @keyup.enter="apply"
     />
     <div class="selects">
       <select
@@ -19,10 +20,13 @@
         </option>
       </select>
     </div>
+    <div class="btn btn-primary" @click="apply"><span>Apply</span></div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -55,6 +59,18 @@ export default {
       ],
     };
   },
+  methods: {
+    async apply() {
+      try {
+        const OMDB_API_KEY = '7035c60c';
+        const res = await axios.get(
+          `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`
+        );
+      } catch (error) {
+        alert(error);
+      }
+    },
+  },
 };
 </script>
 
@@ -70,7 +86,6 @@ export default {
       margin-right: 0;
     }
   }
-
   .selects {
     display: flex;
 
@@ -82,6 +97,15 @@ export default {
         margin-right: 0;
       }
     }
+  }
+  .btn {
+    width: 120px;
+    height: 50px;
+    font-weight: 700;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
