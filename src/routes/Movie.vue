@@ -11,11 +11,24 @@
         <div class="skeleton etc"></div>
       </div>
     </div>
+    <Loader v-if="loading" :size="3" :z-index="9" fixed />
   </div>
 </template>
 
 <script>
+import Loader from '~/components/Loader';
+
 export default {
+  components: {
+    Loader,
+  },
+
+  computed: {
+    loading() {
+      return this.$store.state.movie.loading;
+    },
+  },
+
   created() {
     this.$store.dispatch('movie/searchMovieWithId', {
       id: this.$route.params.id,
