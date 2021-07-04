@@ -2,7 +2,7 @@
   <footer>
     <Logo />
     <a href="https://github.com/msko89" target="_blank">
-      (c){{ new Date().getFullYear() }} Msko
+      (c){{ new Date().getFullYear() }} MSKO
     </a>
   </footer>
 </template>
